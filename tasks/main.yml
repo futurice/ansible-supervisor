@@ -1,13 +1,18 @@
 ---
+- shell: "command -v pip >/dev/null 2>&1"
+  changed_when: result.rc != 0
+  register: result
+- shell: "cd /tmp && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py"
+  when: result.rc != 0
 - pip: name=supervisor
 - file: path="{{supervisor_conf_dir}}" state=directory
 - template: src=supervisord.conf dest="{{supervisor_config}}"
 - template: src=supervisor_initd dest=/etc/init.d/supervisor mode=0755
-  when: ansible_distribution == 'Debian' and supervisor_init_scripts
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and supervisor_init_scripts
 - shell: update-rc.d supervisor defaults
   register: result
   changed_when: "result.rc != 0"
-  when: ansible_distribution == 'Debian' and supervisor_init_scripts
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and supervisor_init_scripts
 - file: path="{{supervisor_log_dir}}" state=directory
 - file: path="{{supervisor_conf_dir}}" state=directory
 - service: name=supervisor enabled=yes state=started
