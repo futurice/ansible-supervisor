@@ -1,9 +1,37 @@
-# ansible-supervisor [![Build Status](https://travis-ci.org/futurice/ansible-supervisor.svg?branch=master)](https://travis-ci.org/futurice/ansible-supervisor)
+ansible-supervisor
+===========
+[![Build Status](https://travis-ci.org/futurice/ansible-supervisor.svg?branch=master)](https://travis-ci.org/futurice/ansible-supervisor)
 
-Ansible role for Supervisor
+Ansible role for [Supervisor](http://supervisord.org/)
 
-# development
+
+Role Variables
+--------------
+```yaml
+---
+supervisor_config: '/etc/supervisord.conf'
+supervisor_conf_dir: '/etc/supervisor/conf.d/'
+supervisor_log_dir: "/var/log/supervisor"
+supervisor_pid_path: "/var/run/"
+supervisor_user: "root"
+supervisor_init_scripts: true
+project: "project"
 ```
-pip install -r requirements.txt
-ANSIBLE_TRANSPORT="ssh" ANSIBLE_SSH_ARGS="-o ForwardAgent=yes" ansible-playbook tests/test.yml -i inventory -v
-```
+
+
+Dependencies
+------------
+ * futurice.pip
+
+
+Example Playbook
+----------------
+
+    - hosts: servers
+      roles:
+         - { role: futurice.supervisor }
+
+License
+-------
+
+BSD
