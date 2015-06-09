@@ -1,6 +1,7 @@
 ---
 - name: "Check that PIP is installed; supervisor dependency"
-  command: /bin/true
+  command: pip -V
+  changed_when: "result.rc != 0"
   notify: install pip
 
 - pip: name=supervisor
