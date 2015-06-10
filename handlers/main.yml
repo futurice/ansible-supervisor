@@ -11,9 +11,9 @@
 - name: ensure supervisor service
   service: name=supervisor state=started
 
-# assuming all programs for the project are under app_name -group
+# assuming all programs are grouped
 - name: reload and restart supervisor for project
   shell: supervisorctl reread
-  shell: supervisorctl update {{app_name}}
-  shell: supervisorctl restart {{app_name}}:*
+  shell: supervisorctl update {{supervisor_app}}
+  shell: supervisorctl restart {{supervisor_app}}:*
   notify: ensure supervisor service
