@@ -14,6 +14,6 @@
 # assuming all programs are grouped
 - name: reload and restart supervisor for project
   shell: supervisorctl reread
-  shell: supervisorctl update {{supervisor_app}}
-  shell: supervisorctl restart {{supervisor_app}}:*
+  shell: supervisorctl update {{supervisor_group}}
+  shell: supervisorctl restart {{supervisor_group}}:*
   notify: ensure supervisor service

@@ -9,13 +9,7 @@ Role Variables
 --------------
 ```yaml
 ---
-supervisor_config: '/etc/supervisord.conf'
-supervisor_conf_dir: '/etc/supervisor/conf.d/'
-supervisor_log_dir: "/var/log/supervisor"
-supervisor_pid_path: "/var/run/"
-supervisor_user: "root"
-supervisor_init_scripts: true
-project: "project"
+supervisor_group:
 ```
 
 
