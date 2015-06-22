@@ -22,4 +22,6 @@
 
 - file: path="{{supervisor_conf_dir}}" state=directory
 
+# starting a service can fail due downstream configurations not being in order yet; this should be a notify?
 - service: name=supervisor enabled=yes state=started
+  ignore_errors: True
