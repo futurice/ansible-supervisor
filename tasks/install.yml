@@ -1,9 +1,4 @@
 ---
-- name: "Check that PIP is installed; supervisor dependency"
-  command: pip -V
-  changed_when: "result.rc != 0"
-  notify: install pip
-
 - pip: name=supervisor
 
 - file: path="{{supervisor_conf_dir}}" state=directory
