@@ -1,7 +1,16 @@
 ---
 - pip: name=supervisor
 
-- file: path="{{supervisor_conf_dir}}" state=directory
+- group: name={{supervisor_user_group}} state=present
+
+- user: name={{item}} groups={{supervisor_user_group}} append=yes
+  with_items: '{{supervisor_group_users}}'
+
+- file: path="{{supervisor_conf_dir}}"
+    state=directory
+    owner="{{supervisor_user}}"
+    group="{{supervisor_user_group}}"
+    mode="ug=rwx,o=rx"
 
 - template: src=supervisord.conf dest="{{supervisor_config}}"
 
