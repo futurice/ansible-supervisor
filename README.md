@@ -10,6 +10,10 @@ Role Variables
 ```yaml
 ---
 supervisor_group:
+supervisor_user_group: "supervisor" # a linux usergroup whose members may manage supervisor without sudo
+supervisor_group_users: # a list of linux users to add to the control group
+    - "user1"
+    - "user2"
 ```
 
 
