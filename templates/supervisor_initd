@@ -22,7 +22,7 @@
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON_OPTS='-c /etc/supervisord.conf'
+DAEMON_OPTS='-c {{supervisor_config}}'
 DAEMON=/usr/local/bin/supervisord
 NAME=supervisord
 DESC=supervisor
