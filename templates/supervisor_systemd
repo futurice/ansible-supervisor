@@ -1,0 +1,13 @@
+[Unit]
+Description=Supervisord Service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local
+ExecStart=/usr/bin/supervisord -c {{supervisor_config}} 
+
+[Install]
+WantedBy=multi-user.target
+Alias=supervisor.service
+

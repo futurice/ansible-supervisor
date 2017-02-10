@@ -17,6 +17,9 @@
 - template: src=supervisor_initd dest=/etc/init.d/supervisor mode=0755
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and supervisor_init_scripts
 
+- template: src=supervisor_systemd dest=/usr/lib/systemd/system/supervisor.service  mode=0755
+  when: (ansible_distribution == 'CentOS' )
+
 - shell: update-rc.d supervisor defaults
   register: result
   changed_when: "result.rc != 0"
